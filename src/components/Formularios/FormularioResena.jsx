@@ -3,7 +3,7 @@ import Modal from '../UI/Modal';
 import Button from '../UI/Button';
 import Estrellas from '../UI/Estrellas';
 
-const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
+const FormularioResena = ({ isOpen, onClose, juegos, onGuardar, resena = null }) => {
   const [formData, setFormData] = useState({
     juego: '',
     puntuacion: 5,
@@ -12,7 +12,16 @@ const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
   });
 
   useEffect(() => {
-    if (!isOpen) {
+    if (resena) {
+      // Modo edición - cargar datos de la reseña
+      setFormData({
+        juego: resena.juego,
+        puntuacion: resena.puntuacion,
+        texto: resena.texto,
+        autor: resena.autor || ''
+      });
+    } else if (!isOpen) {
+      // Resetear formulario al cerrar
       setFormData({
         juego: '',
         puntuacion: 5,
@@ -20,7 +29,7 @@ const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
         autor: ''
       });
     }
-  }, [isOpen]);
+  }, [isOpen, resena]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +49,7 @@ const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
     <Modal 
       isOpen={isOpen} 
       onClose={onClose} 
-      title="Escribir Reseña"
+      title={resena ? 'Editar Reseña' : 'Escribir Reseña'}
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -50,7 +59,18 @@ const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
             required
             value={formData.juego}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            disabled={resena}
+            className={`w-full px-4 py-2 rounded-lg border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+              resena 
+                ? 'bg-white bg-opacity-10 text-white opacity-50 cursor-not-allowed' 
+                : 'bg-white text-purple-900 font-semibold cursor-pointer'
+            }`}
+            style={!resena ? {
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235b21b6' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 0.75rem center',
+              paddingRight: '2.5rem'
+            } : {}}
           >
             <option value="">Selecciona un juego</option>
             {juegos.map(juego => (
@@ -59,6 +79,11 @@ const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
               </option>
             ))}
           </select>
+          {resena && (
+            <p className="text-xs text-purple-300 mt-1">
+              No puedes cambiar el juego al editar una reseña
+            </p>
+          )}
         </div>
 
         <div>
@@ -109,7 +134,7 @@ const FormularioResena = ({ isOpen, onClose, juegos, onGuardar }) => {
             variant="primary"
             className="flex-1"
           >
-            Publicar Reseña
+            {resena ? 'Actualizar Reseña' : 'Publicar Reseña'}
           </Button>
         </div>
       </form>

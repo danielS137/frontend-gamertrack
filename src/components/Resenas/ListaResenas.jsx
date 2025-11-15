@@ -51,7 +51,7 @@ const ListaResenas = ({ resenas, juegos, onAgregarResena, onEliminarResena, onEd
             />
             <input
               type="text"
-              placeholder="Buscar en reseñas..."
+              placeholder="Buscar por juego, autor o contenido..."
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               className="w-full pl-10 pr-4 py-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-white placeholder-opacity-50 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -62,7 +62,13 @@ const ListaResenas = ({ resenas, juegos, onAgregarResena, onEliminarResena, onEd
           <select
             value={filtroJuego}
             onChange={(e) => setFiltroJuego(e.target.value)}
-            className="px-4 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="px-4 py-2 rounded-lg bg-white text-purple-900 font-semibold border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235b21b6' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 0.5rem center',
+              paddingRight: '2.5rem'
+            }}
           >
             <option value="Todos">Todos los juegos</option>
             {juegos.map(juego => (
