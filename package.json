@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://daniels137.github.io/frontend-gamertrack/",
   "dependencies": {
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "axios": "^1.13.2",
     "lucide-react": "^0.553.0",
     "react": "^18.2.0",
