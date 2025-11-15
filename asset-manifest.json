@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/frontend-gamertrack/static/css/main.51f4d821.css",
+    "main.js": "/frontend-gamertrack/static/js/main.a942949a.js",
+    "index.html": "/frontend-gamertrack/index.html",
+    "main.51f4d821.css.map": "/frontend-gamertrack/static/css/main.51f4d821.css.map",
+    "main.a942949a.js.map": "/frontend-gamertrack/static/js/main.a942949a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51f4d821.css",
+    "static/js/main.a942949a.js"
+  ]
+}
