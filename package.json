@@ -2,7 +2,7 @@
   "name": "gametracker-frontend",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://tuusuario.github.io/gametracker-frontend",
+  "homepage": "https://daniels137.github.io/frontend-gamertrack/",
   "dependencies": {
     "lucide-react": "^0.553.0",
     "react": "^18.2.0",
